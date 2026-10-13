@@ -1,0 +1,422 @@
+{% extends "base.html" %}
+
+{% block title %}About EventOps AI — Smarter Event Operations{% endblock %}
+
+{% block extra_css %}
+<style>
+  .about-page {
+    --ink: #10213f;
+    --muted: #64748b;
+    --line: #e5eaf2;
+    --blue: #0d6efd;
+    --violet: #6f42c1;
+    color: var(--ink);
+  }
+
+  .about-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 390px;
+    padding: clamp(2rem, 5vw, 4.75rem);
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 89% 16%, rgba(255,255,255,.28), transparent 20%),
+      radial-gradient(circle at 73% 96%, rgba(214,51,132,.4), transparent 28%),
+      linear-gradient(120deg, #0a58ca 0%, #4f24a5 55%, #8d2c9f 100%);
+    box-shadow: 0 24px 55px rgba(37, 56, 110, .2);
+  }
+
+  .about-hero::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    right: -110px;
+    bottom: -145px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    box-shadow: 0 0 0 28px rgba(255,255,255,.05), 0 0 0 58px rgba(255,255,255,.04);
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 670px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .42rem .8rem;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 2rem;
+    background: rgba(255,255,255,.1);
+    color: #eaf2ff;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .about-hero h1 {
+    max-width: 610px;
+    margin: 1.25rem 0 1rem;
+    color: #fff;
+    font-size: clamp(2.35rem, 5vw, 4.2rem);
+    letter-spacing: -.045em;
+    line-height: 1.02;
+  }
+
+  .about-hero .lead {
+    max-width: 570px;
+    color: rgba(255,255,255,.84);
+    line-height: 1.7;
+  }
+
+  .hero-orbit {
+    position: absolute;
+    top: 56px;
+    right: 11%;
+    width: 195px;
+    height: 195px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 50%;
+  }
+
+  .hero-orbit::before,
+  .hero-orbit::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .hero-orbit::before {
+    inset: 29px;
+    border: 1px dashed rgba(255,255,255,.32);
+  }
+
+  .hero-orbit::after {
+    top: -7px;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    background: #ffc107;
+    box-shadow: 0 0 0 8px rgba(255,193,7,.18), 78px 142px 0 -2px #70e1c2;
+  }
+
+  .hero-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 82px;
+    height: 82px;
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 8px solid rgba(255,255,255,.15);
+    border-radius: 1.6rem;
+    background: rgba(255,255,255,.95);
+    color: var(--violet);
+    font-size: 2.2rem;
+    box-shadow: 0 15px 30px rgba(11, 22, 61, .2);
+  }
+
+  .section-kicker {
+    color: var(--blue);
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    margin-top: .55rem;
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    letter-spacing: -.035em;
+  }
+
+  .section-intro {
+    max-width: 660px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .mission-panel {
+    height: 100%;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 1.35rem;
+    background: linear-gradient(145deg, #f8fbff, #f4f1ff);
+  }
+
+  .mission-panel blockquote {
+    margin: 1.25rem 0 0;
+    color: #263b61;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .principle-card {
+    height: 100%;
+    padding: 1.45rem;
+    border: 1px solid var(--line);
+    border-radius: 1.15rem;
+    background: #fff;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+
+  .principle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(24, 43, 78, .1);
+  }
+
+  .principle-icon {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    margin-bottom: 1rem;
+    border-radius: .9rem;
+    background: #e8f1ff;
+    color: var(--blue);
+    font-size: 1.25rem;
+  }
+
+  .principle-card:nth-child(2) .principle-icon {
+    background: #f0eaff;
+    color: var(--violet);
+  }
+
+  .principle-card:nth-child(3) .principle-icon {
+    background: #e2f8f0;
+    color: #16835e;
+  }
+
+  .principle-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .principle-card p,
+  .agent-row p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: .92rem;
+    line-height: 1.65;
+  }
+
+  .agent-panel {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: #101f3b;
+    color: #fff;
+    box-shadow: 0 18px 35px rgba(16, 31, 59, .16);
+  }
+
+  .agent-panel .section-kicker {
+    color: #8eb9ff;
+  }
+
+  .agent-panel .section-title {
+    color: #fff;
+  }
+
+  .agent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+
+  .agent-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .agent-row p {
+    color: rgba(255,255,255,.66);
+  }
+
+  .agent-number {
+    display: grid;
+    min-width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: .75rem;
+    background: rgba(255,255,255,.1);
+    color: #9fc3ff;
+    font-size: .8rem;
+    font-weight: 800;
+  }
+
+  .agent-row h3 {
+    margin-bottom: .25rem;
+    font-size: 1rem;
+  }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+    background: var(--line);
+  }
+
+  .stat {
+    padding: 1.3rem;
+    background: #fff;
+    text-align: center;
+  }
+
+  .stat strong {
+    display: block;
+    color: var(--blue);
+    font-size: 1.75rem;
+  }
+
+  .stat span {
+    color: var(--muted);
+    font-size: .82rem;
+  }
+
+  .about-cta {
+    padding: 2.25rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(100deg, #eaf3ff, #f6efff);
+  }
+
+  @media (max-width: 767px) {
+    .hero-orbit {
+      top: auto;
+      right: -55px;
+      bottom: -35px;
+      transform: scale(.7);
+    }
+
+    .about-hero {
+      min-height: 440px;
+    }
+
+    .stat-strip {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-page">
+  <section class="about-hero mb-5">
+    <div class="hero-copy">
+      <span class="eyebrow"><i class="bi bi-stars"></i> About the platform</span>
+      <h1>Events are complex.<br><span class="text-warning">Your operations don't have to be.</span></h1>
+      <p class="lead mb-4">
+        EventOps AI brings the moving parts of modern events into one intelligent command center,
+        so teams can spend less time coordinating and more time creating remarkable experiences.
+      </p>
+      <div class="d-flex flex-wrap gap-3">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('dashboard') }}" class="btn btn-light btn-lg px-4">
+          Open your dashboard <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+        {% else %}
+        <a href="{{ url_for('register') }}" class="btn btn-light btn-lg px-4">
+          Start managing smarter <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+        {% endif %}
+        <a href="#how-it-works" class="btn btn-outline-light btn-lg px-4">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-orbit" aria-hidden="true">
+      <div class="hero-core"><i class="bi bi-robot"></i></div>
+    </div>
+  </section>
+
+  <section class="row g-4 align-items-stretch mb-5">
+    <div class="col-lg-5">
+      <div class="mission-panel">
+        <span class="section-kicker">Our mission</span>
+        <blockquote>“Make every event feel effortless — for the people behind it and the people experiencing it.”</blockquote>
+        <p class="section-intro mt-3 mb-0">
+          We believe event teams do their best work when the busywork is handled intelligently,
+          the right information is easy to find, and every decision is backed by context.
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="row g-3 h-100">
+        <div class="col-md-4">
+          <article class="principle-card">
+            <span class="principle-icon"><i class="bi bi-lightning-charge-fill"></i></span>
+            <h3>Move with momentum</h3>
+            <p>Automate repetitive workflows and keep every stakeholder in sync as plans evolve.</p>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="principle-card">
+            <span class="principle-icon"><i class="bi bi-diagram-3-fill"></i></span>
+            <h3>See the whole picture</h3>
+            <p>Connect attendees, venues, speakers, sponsors, and incidents in one shared view.</p>
+          </article>
+        </div>
+        <div class="col-md-4">
+          <article class="principle-card">
+            <span class="principle-icon"><i class="bi bi-heart-fill"></i></span>
+            <h3>Keep people first</h3>
+            <p>Use better operational clarity to create calmer teams and more memorable moments.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="row g-4 align-items-center mb-5">
+    <div class="col-lg-5">
+      <span class="section-kicker">One platform, many specialists</span>
+      <h2 class="section-title">A smarter team behind every event</h2>
+      <p class="section-intro">
+        EventOps AI is designed around focused intelligence. Each capability handles a specific
+        operational job, while the platform keeps everything connected and visible.
+      </p>
+      <div class="stat-strip mt-4">
+        <div class="stat"><strong>6</strong><span>specialized agents</span></div>
+        <div class="stat"><strong>1</strong><span>connected workspace</span></div>
+        <div class="stat"><strong>24/7</strong><span>operational visibility</span></div>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="agent-panel">
+        <span class="section-kicker">The EventOps engine</span>
+        <h2 class="section-title mb-2">From first plan to final follow-up</h2>
+        <div class="agent-row">
+          <span class="agent-number">01</span>
+          <div><h3>Registration intelligence</h3><p>Keep attendee journeys organized from sign-up through check-in.</p></div>
+        </div>
+        <div class="agent-row">
+          <span class="agent-number">02</span>
+          <div><h3>Venue &amp; speaker coordination</h3><p>Make schedules, spaces, and availability easy to manage in real time.</p></div>
+        </div>
+        <div class="agent-row">
+          <span class="agent-number">03</span>
+          <div><h3>Sponsorship &amp; incident insight</h3><p>Protect event value and respond quickly when the unexpected happens.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+    <div>
+      <span class="section-kicker">Ready when you are</span>
+      <h2 class="section-title mb-2">Build a better event day.</h2>
+      <p class="section-intro mb-0">Bring your team, your events, and your next big idea into focus.</p>
+    </div>
+    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg px-4 flex-shrink-0">
+      Talk to the team <i class="bi bi-arrow-up-right ms-2"></i>
+    </a>
+  </section>
+</div>
+{% endblock %}
