@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy — EventOps AI{% endblock %}
+
+{% block content %}
+<section class="container privacy-page">
+  <div class="privacy-hero">
+    <div>
+      <span class="privacy-eyebrow"><i class="bi bi-shield-check"></i> Your privacy matters</span>
+      <h1>Privacy Policy</h1>
+      <p class="lead mb-0">
+        This policy explains how EventOps AI collects, uses, and protects information
+        when you use our event management platform.
+      </p>
+    </div>
+    <i class="bi bi-lock privacy-hero-icon" aria-hidden="true"></i>
+  </div>
+
+  <div class="privacy-meta">
+    <strong>Last updated:</strong> October 15, 2026
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <article class="privacy-card">
+        <h2>1. Information we collect</h2>
+        <p>
+          We collect information you provide when you create an account, register for
+          an event, submit feedback, or contact us. This may include your name, email
+          address, account credentials, event registrations, feedback, and the contents
+          of messages you send to us.
+        </p>
+        <p>
+          We also collect information needed to operate the platform, such as account
+          activity, event-management records, and basic technical information sent by
+          your browser.
+        </p>
+
+        <h2>2. How we use information</h2>
+        <p>We use collected information to:</p>
+        <ul>
+          <li>create and maintain your account;</li>
+          <li>process event registrations and provide event-management features;</li>
+          <li>respond to questions, support requests, and feedback;</li>
+          <li>improve the reliability, security, and functionality of the platform; and</li>
+          <li>detect, prevent, and address misuse or unauthorized access.</li>
+        </ul>
+
+        <h2>3. How we share information</h2>
+        <p>
+          We do not sell your personal information. Information is shared only when it
+          is necessary to provide the requested service, operate and secure the
+          platform, comply with a legal obligation, or protect the rights and safety of
+          EventOps AI and its users.
+        </p>
+
+        <h2>4. Data retention and security</h2>
+        <p>
+          We retain information for as long as it is needed to provide the service,
+          maintain business records, resolve disputes, and meet legal obligations. We
+          use reasonable administrative and technical safeguards to protect information,
+          but no method of storage or transmission is completely secure.
+        </p>
+
+        <h2>5. Cookies and similar technologies</h2>
+        <p>
+          EventOps AI may use essential cookies or similar technologies to keep you
+          signed in, maintain sessions, and support core platform functionality. Your
+          browser may allow you to manage or block cookies, though some features may
+          not work correctly without them.
+        </p>
+
+        <h2>6. Your choices and rights</h2>
+        <p>
+          You may review and update certain account information through the platform.
+          You may also contact us to ask about your personal information, request a
+          correction, or request deletion where applicable. We may need to verify your
+          identity before completing a request.
+        </p>
+
+        <h2>7. Children’s privacy</h2>
+        <p>
+          The platform is not intended for children under the age required by
+          applicable law. We do not knowingly collect personal information from
+          children without appropriate authorization.
+        </p>
+
+        <h2>8. Changes to this policy</h2>
+        <p>
+          We may update this policy when our practices or legal requirements change.
+          The updated version will be posted on this page with a new “Last updated”
+          date. Your continued use of the platform after an update means you
+          acknowledge the revised policy.
+        </p>
+
+        <h2>9. Contact us</h2>
+        <p class="mb-0">
+          If you have questions about this Privacy Policy or how your information is
+          handled, please use our <a href="{{ url_for('contact') }}">Contact</a> page.
+        </p>
+      </article>
+    </div>
+
+    <div class="col-lg-4">
+      <aside class="privacy-sidebar">
+        <i class="bi bi-person-check"></i>
+        <h2>Questions about your data?</h2>
+        <p>
+          We want you to understand and control the information you share with
+          EventOps AI.
+        </p>
+        <a class="btn btn-primary" href="{{ url_for('contact') }}">
+          Contact us <i class="bi bi-arrow-right"></i>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .privacy-page {
+    max-width: 1120px;
+    color: #10213f;
+  }
+
+  .privacy-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    padding: clamp(2rem, 5vw, 4rem);
+    border-radius: 1.5rem;
+    background: linear-gradient(120deg, #0a58ca, #4f24a5);
+    color: #fff;
+    box-shadow: 0 20px 45px rgba(37, 56, 110, .18);
+  }
+
+  .privacy-eyebrow {
+    color: #dce9ff;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .privacy-hero h1 {
+    margin: .8rem 0 .65rem;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    letter-spacing: -.04em;
+  }
+
+  .privacy-hero .lead {
+    max-width: 680px;
+    color: rgba(255,255,255,.82);
+    line-height: 1.7;
+  }
+
+  .privacy-hero-icon {
+    color: rgba(255,255,255,.22);
+    font-size: clamp(4rem, 10vw, 7rem);
+  }
+
+  .privacy-meta {
+    margin-bottom: 1.5rem;
+    color: #64748b;
+    font-size: .9rem;
+  }
+
+  .privacy-card,
+  .privacy-sidebar {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid #e5eaf2;
+    border-radius: 1.25rem;
+    background: #fff;
+  }
+
+  .privacy-card h2 {
+    margin: 1.8rem 0 .65rem;
+    color: #10213f;
+    font-size: 1.25rem;
+  }
+
+  .privacy-card h2:first-child {
+    margin-top: 0;
+  }
+
+  .privacy-card p,
+  .privacy-card li,
+  .privacy-sidebar p {
+    color: #52627a;
+    line-height: 1.75;
+  }
+
+  .privacy-card li {
+    margin-bottom: .4rem;
+  }
+
+  .privacy-card a {
+    color: #0d6efd;
+    font-weight: 600;
+  }
+
+  .privacy-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    background: linear-gradient(145deg, #f8fbff, #f4f1ff);
+  }
+
+  .privacy-sidebar > i {
+    display: inline-grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    margin-bottom: 1rem;
+    border-radius: .9rem;
+    background: #e8f1ff;
+    color: #0d6efd;
+    font-size: 1.4rem;
+  }
+
+  .privacy-sidebar h2 {
+    font-size: 1.35rem;
+  }
+</style>
+{% endblock %}
